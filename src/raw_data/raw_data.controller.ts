@@ -9,7 +9,7 @@ import {
 import { RawDataService } from './raw_data.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('raw_data')
+@Controller('raw-data')
 export class RawDataController {
   constructor(private readonly rawDataService: RawDataService) {}
 
