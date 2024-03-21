@@ -110,8 +110,6 @@ export class RawDataService {
       query.resultTime = { ...query.resultTime, $lte: endDate };
     }
 
-    console.log(query);
-
     const data = await this.rawDataModel
       .find(query, { resultTime: 1, availDur: 1, _id: 0 })
       .exec();

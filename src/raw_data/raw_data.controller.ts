@@ -20,8 +20,6 @@ export class RawDataController {
     @Query('startDate') startDate: string,
     @Query('endDate') endDate: string,
   ) {
-    console.log(startDate);
-
     return this.rawDataService.getGraph({
       enodebId,
       cellId,
