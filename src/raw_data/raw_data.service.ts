@@ -9,6 +9,7 @@ import { Model } from 'mongoose';
 import { RawData } from './raw_data.model';
 import { parse } from 'csv-parse';
 import { Readable } from 'stream';
+import * as moment from 'moment';
 
 @Injectable()
 export class RawDataService {
@@ -50,7 +51,7 @@ export class RawDataService {
 
           if (row['Result Time']) {
             const mappedData = {
-              resultTime: row['Result Time'],
+              resultTime: moment(row['Result Time']).toISOString(),
               enodebId: objectName['eNodeB ID'],
               cellId: objectName['Local Cell ID'],
               availDur: row['L.Cell.Avail.Dur'],
