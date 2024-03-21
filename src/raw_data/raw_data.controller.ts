@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -13,8 +14,20 @@ export class RawDataController {
   constructor(private readonly rawDataService: RawDataService) {}
 
   @Get()
-  getGraph() {
-    return 'a';
+  getGraph(
+    @Query('enodebId') enodebId: string,
+    @Query('cellId') cellId: string,
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string,
+  ) {
+    console.log(startDate);
+
+    return this.rawDataService.getGraph({
+      enodebId,
+      cellId,
+      startDate,
+      endDate,
+    });
   }
 
   @Post()

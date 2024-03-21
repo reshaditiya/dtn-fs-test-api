@@ -80,4 +80,42 @@ export class RawDataService {
       );
     }
   }
+
+  async getGraph({
+    enodebId,
+    cellId,
+    startDate,
+    endDate,
+  }: {
+    enodebId: string;
+    cellId: string;
+    startDate: string;
+    endDate: string;
+  }) {
+    const query: any = {};
+
+    if (enodebId) {
+      query.enodebId = enodebId;
+    }
+
+    if (cellId) {
+      query.cellId = cellId;
+    }
+
+    if (startDate) {
+      query.resultTime = { ...query.resultTime, $gte: startDate };
+    }
+
+    if (endDate) {
+      query.resultTime = { ...query.resultTime, $lte: endDate };
+    }
+
+    console.log(query);
+
+    const data = await this.rawDataModel
+      .find(query, { resultTime: 1, availDur: 1, _id: 0 })
+      .exec();
+
+    return data;
+  }
 }
