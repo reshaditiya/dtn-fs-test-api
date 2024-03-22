@@ -29,7 +29,7 @@ export class RawDataController {
   }
 
   @Post()
-  @UseInterceptors(FileInterceptor('files'))
+  @UseInterceptors(FileInterceptor('file'))
   async uploadRawData(@UploadedFile() file: Express.Multer.File) {
     return this.rawDataService.insertRawData(file);
   }
